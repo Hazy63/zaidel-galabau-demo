@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Moos / Waldgrün */
+  --color-moss-950: #101d16;
+  --color-moss-900: #16281e;
+  --color-moss-800: #1f3a2b;
+  --color-moss-700: #2b4d39;
+  --color-moss-600: #3a6549;
+  --color-moss-500: #4f805d;
+  --color-moss-400: #74a07a;
+  --color-moss-300: #9cc28a;
+  --color-moss-200: #c9dcc0;
+  --color-moss-100: #e4ede0;
+
+  /* Buntsandstein (Main/Odenwald) */
+  --color-clay-700: #8a3d22;
+  --color-clay-600: #a64b2a;
+  --color-clay-500: #c25e37;
+  --color-clay-400: #d77e56;
+  --color-clay-200: #f0cdb8;
+  --color-clay-100: #f8e7dc;
+
+  /* Kalkstein / Papier */
+  --color-stone-50: #faf8f4;
+  --color-stone-100: #f3efe6;
+  --color-stone-200: #e7e1d4;
+  --color-stone-300: #d4ccbb;
+  --color-stone-400: #aaa190;
+  --color-stone-500: #7f776a;
+  --color-stone-600: #5f584d;
+  --color-stone-700: #443f37;
+  --color-stone-800: #2c2924;
+  --color-stone-900: #1b1a17;
+
+  --shadow-card: 0 1px 2px rgb(27 26 23 / 0.06), 0 1px 1px rgb(27 26 23 / 0.04);
+  --shadow-pop: 0 12px 32px -8px rgb(27 26 23 / 0.25), 0 2px 6px rgb(27 26 23 / 0.08);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-stone-50 text-stone-900 font-sans antialiased;
+    font-feature-settings: "ss01", "tnum" 0;
+  }
+  ::selection {
+    @apply bg-moss-200 text-moss-900;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-moss-500);
+    outline-offset: 2px;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Druckansicht für Angebote / Rechnungen */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  body {
+    background: white !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .fit-a4 {
+    zoom: 1 !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: 0 !important;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
