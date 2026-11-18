@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 shots/
+tools/handover/img/
+tools/handover/*.pdf
+tools/handover/handover.html
+tools/handover/preview.png
