@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, LockKeyhole, Mail, MapPin, Menu, Phone, Smartphone, Star, X } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ChevronDown, ChevronLeft, ChevronRight, LockKeyhole, Mail, MapPin, Menu, Phone, Smartphone, Star, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Wordmark } from '../Logo'
@@ -383,8 +383,17 @@ const catLabel = (c: Cat) => CATS.find((x) => x.id === c)?.label ?? ''
 function Gallery() {
   const [cat, setCat] = useState<Cat | 'alle'>('alle')
   const [open, setOpen] = useState<number | null>(null)
+  const [expanded, setExpanded] = useState(false)
   const list = PROJECTS.filter((p) => cat === 'alle' || p.cat === cat)
   const bento = cat === 'alle'
+  // Zugeklappt: bei „Alle“ genau eine 5er-Gruppe (1 groß + 4 klein), sonst eine Reihe à 3
+  const limit = bento ? 5 : 3
+  const canCollapse = list.length > limit
+  const shown = expanded || !canCollapse ? list : list.slice(0, limit)
+  const toggle = () => {
+    if (expanded) scrollToId('referenzen')
+    setExpanded(!expanded)
+  }
 
   return (
     <section id="referenzen" className="scroll-mt-16 mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -395,14 +404,14 @@ function Gallery() {
         </div>
         <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0">
           {CATS.map((c) => (
-            <button key={c.id} onClick={() => setCat(c.id)} className={clsx('h-10 shrink-0 rounded-full px-4 text-[14px] font-medium ring-1 transition', cat === c.id ? 'bg-moss-800 text-white ring-moss-800' : 'text-stone-700 ring-stone-300 hover:ring-stone-500')}>
+            <button key={c.id} onClick={() => { setCat(c.id); setExpanded(false) }}className={clsx('h-10 shrink-0 rounded-full px-4 text-[14px] font-medium ring-1 transition', cat === c.id ? 'bg-moss-800 text-white ring-moss-800' : 'text-stone-700 ring-stone-300 hover:ring-stone-500')}>
               {c.label}
             </button>
           ))}
         </div>
       </div>
-      <div key={cat} className={clsx('fadein mt-12 grid gap-3', bento ? 'grid-flow-dense auto-rows-[170px] grid-cols-2 sm:auto-rows-[240px] lg:auto-rows-[260px] lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3')}>
-        {list.map((p, i) => {
+      <div id="referenzen-raster" key={cat} className={clsx('fadein mt-12 grid gap-3', bento ? 'grid-flow-dense auto-rows-[170px] grid-cols-2 sm:auto-rows-[240px] lg:auto-rows-[260px] lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3')}>
+        {shown.map((p, i) => {
           const big = bento && i % 5 === 0
           return (
             <button
@@ -424,6 +433,20 @@ function Gallery() {
           )
         })}
       </div>
+
+      {canCollapse && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={toggle}
+            aria-expanded={expanded}
+            aria-controls="referenzen-raster"
+            className="group inline-flex h-12 items-center gap-2 rounded-full px-6 text-[15px] font-semibold text-moss-800 ring-1 ring-stone-300 transition hover:bg-stone-100 hover:ring-stone-500 active:scale-[0.98]"
+          >
+            {expanded ? 'Weniger anzeigen' : `Alle ${list.length} Referenzen ansehen`}
+            <ChevronDown size={18} className={clsx('transition duration-300', expanded && 'rotate-180')} />
+          </button>
+        </div>
+      )}
 
       {open !== null && list[open] && <Lightbox list={list} index={open} onChange={setOpen} onClose={() => setOpen(null)} />}
     </section>

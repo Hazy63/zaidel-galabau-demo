@@ -165,7 +165,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
   <div style="display:grid;grid-template-columns:1fr 50mm;gap:7mm;margin-top:5mm;align-items:start">
     <div>
       <div class="shot"><img src="${img('site-referenzen')}"></div>
-      <h3 style="margin-top:3.5mm">Referenzen</h3><p class="muted">Ein großes Bild, vier kleine, ohne Lücken. Filter nach Pflaster, Naturstein, Treppen, Terrassen, Zäunen und Garten. Ein Klick öffnet das Foto groß, mit Pfeilen oder Wischen blättern.</p>
+      <h3 style="margin-top:3.5mm">Referenzen</h3><p class="muted">Zuerst nur fünf Fotos (ein großes, vier kleine), die übrigen klappen per Knopf auf. Filter nach Pflaster, Naturstein, Treppen, Terrassen, Zäunen und Garten. Ein Klick öffnet das Foto groß, mit Pfeilen oder Wischen blättern.</p>
       <div class="shot" style="margin-top:4mm"><img src="${img('site-baustelle')}"></div>
       <h3 style="margin-top:3.5mm">Auf der Baustelle</h3><p class="muted">Laufband mit Fotos von der Arbeit selbst. Zeigt, dass hier selbst gebaut wird. Neue Baustellenfotos lassen sich jederzeit dazunehmen.</p>
     </div>
