@@ -72,7 +72,7 @@ td{padding:2.3mm 3mm;border-bottom:1px solid #e7e1d4;vertical-align:top}
 a{color:#2b4d39;text-decoration:none;font-weight:600}
 /* Deckblatt */
 .cover{padding:0;background:#16281e;color:#fff}
-.cover .bg{position:absolute;inset:0;background:url(${f('public/img/pflaster-sandstein-detail.webp')}) center/cover;opacity:.75}
+.cover .bg{position:absolute;inset:0;background:url(${img('cover')}) center/cover;opacity:.75}
 .cover .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgb(16 29 22/.55),rgb(16 29 22/.2) 35%,rgb(16 29 22/.96) 72%)}
 .cover .in{position:absolute;inset:0;padding:20mm 20mm 18mm;display:flex;flex-direction:column}
 .cover h1{color:#fff;font-size:40pt;line-height:1.02;margin-top:auto}
