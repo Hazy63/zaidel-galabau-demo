@@ -82,7 +82,7 @@ export default function Site() {
             <span className="h-px w-8 bg-moss-300" /> Garten- und Landschaftsbau · Kleinheubach am Main
           </p>
           <h1 className="mt-6 max-w-4xl font-display text-[44px] leading-[1.02] font-medium tracking-[-0.02em] text-white sm:text-[68px] lg:text-[84px]">
-            Wege, Mauern und Gärten, die <em className="font-normal text-clay-200 not-italic sm:italic">bleiben.</em>
+            Wege, Mauern und Gärten, die <em className="font-normal text-moss-300 not-italic sm:italic">bleiben.</em>
           </h1>
           <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/80 sm:text-lg">
             Wir bauen Außenanlagen im Landkreis Miltenberg – Pflaster, Natursteinmauern aus regionalem Buntsandstein, Treppen, Terrassen und Zäune. Mit eigener Kolonne und dem Chef selbst auf der Baustelle.
@@ -174,7 +174,7 @@ export default function Site() {
             <img src={img('sandstein-setzen-bagger')} alt="Buntsandstein-Blöcke werden mit dem Bagger gesetzt" loading="lazy" className="photo absolute inset-0 size-full object-cover" />
           </div>
           <div className="reveal px-5 py-20 sm:px-8 lg:py-28 lg:pr-16 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]">
-            <p className="text-[13px] font-semibold tracking-[0.16em] text-clay-200 uppercase">Unser Material</p>
+            <p className="text-[13px] font-semibold tracking-[0.16em] text-moss-300 uppercase">Unser Material</p>
             <h2 className="mt-4 font-display text-[36px] leading-[1.08] font-medium tracking-tight sm:text-5xl">Roter Main-Sandstein.</h2>
             <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-white/75">
               Zwischen Spessart und Odenwald ist der rote Buntsandstein zuhause – er steckt in den Altstädten von Miltenberg und Wertheim. Wir setzen ihn als Blockstein für Hangmauern, Treppen und Beeteinfassungen ein. Jeder Block ist ein Unikat, jeder wird einzeln mit der Steinzange gesetzt.

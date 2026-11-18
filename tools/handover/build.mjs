@@ -76,7 +76,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
 .cover .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgb(16 29 22/.55),rgb(16 29 22/.2) 35%,rgb(16 29 22/.96) 72%)}
 .cover .in{position:absolute;inset:0;padding:20mm 20mm 18mm;display:flex;flex-direction:column}
 .cover h1{color:#fff;font-size:40pt;line-height:1.02;margin-top:auto}
-.cover h1 em{font-style:italic;color:#f0cdb8;font-weight:400}
+.cover h1 em{font-style:italic;color:#9cc28a;font-weight:400}
 .qrbox{display:flex;gap:7mm;margin-top:10mm}
 .qr{background:#faf8f4;border-radius:3mm;padding:4mm;width:60mm;color:#16281e;display:grid;grid-template-columns:22mm 1fr;gap:3.5mm;align-items:center}
 .qr svg{width:22mm;height:22mm}
@@ -90,7 +90,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
     <div style="display:flex;align-items:center;gap:3mm">${mark(40, '#9cc28a', '#f3efe6')}
       <div><div style="font:600 19pt Fraunces,serif">Zaidel</div><div style="font-size:7.5pt;letter-spacing:.2em;text-transform:uppercase;color:#c9dcc0">Garten- und Landschaftsbau</div></div>
     </div>
-    <div class="eyebrow" style="color:#f0cdb8;margin-top:auto">Übergabe · ${DATE}</div>
+    <div class="eyebrow" style="color:#9cc28a;margin-top:auto">Übergabe · ${DATE}</div>
     <h1 style="margin-top:0">Ihre neue Website<br>und das <em>Auftragsbuch.</em></h1>
     <p style="margin-top:6mm;font-size:12pt;color:rgb(255 255 255/.8);max-width:140mm">Alle Baustellen an einem Ort: Aufträge, Fotos, Angebote, Rechnungen und Notizen. Für das Büro am PC und für die Kolonne draußen auf dem Handy.</p>
     <div class="qrbox">
