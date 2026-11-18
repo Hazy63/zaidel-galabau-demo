@@ -22,24 +22,54 @@ export const SERVICES: { id: Cat; title: string; text: string; tags: string[]; i
   { id: 'garten', title: 'Gartengestaltung & Pflege', text: 'Neuanlagen nach dem Hausbau, Rollrasen, Beete, Hecken. Auf Wunsch auch die regelmäßige Pflege danach.', tags: ['Neuanlage', 'Rollrasen', 'Bepflanzung', 'Heckenschnitt'], img: 'sitzplatz-trockenmauer' },
 ]
 
-export const PROJECTS: { img: string; title: string; cat: Cat; wide?: boolean; tall?: boolean }[] = [
-  { img: 'pflaster-sandstein-detail', title: 'Hof mit Buntsandstein-Einfassung', cat: 'pflaster', wide: true },
-  { img: 'pflasterweg-geschwungen', title: 'Geschwungener Pflasterweg', cat: 'pflaster', tall: true },
+/** Hero-Diashow. pos = Bildausschnitt (object-position), damit das Motiv neben dem Text sichtbar bleibt */
+export const HERO: { img: string; title: string; pos: string }[] = [
+  { img: 'sandstein-treppe-garten', title: 'Sandsteintreppe in der Böschung', pos: '70% 60%' },
+  { img: 'pflaster-sandstein-einfahrt', title: 'Hofeinfahrt mit Buntsandstein-Einfassung', pos: '60% 55%' },
+  { img: 'sitzplatz-trockenmauer', title: 'Runder Sitzplatz mit Trockenmauer', pos: '65% 60%' },
+  { img: 'sandsteinmauer-lang', title: 'Mauer aus Buntsandstein', pos: '50% 60%' },
+]
+
+/** Fotos von der Arbeit selbst (Laufband „Auf der Baustelle“) */
+export const ONSITE: { img: string; title: string }[] = [
+  { img: 'sandstein-setzen-bagger', title: 'Sandsteinblöcke setzen' },
+  { img: 'rollrasen-verlegen', title: 'Rollrasen verlegen' },
+  { img: 'treppe-bau-mitarbeiter', title: 'Blockstufen setzen' },
+  { img: 'erdarbeiten-schubkarre', title: 'Erdarbeiten nach dem Hausbau' },
+  { img: 'kiesbeet-anlegen', title: 'Kiesbeet anlegen' },
+  { img: 'rollrasen-verlegen-ruettler', title: 'Unterbau verdichten' },
+  { img: 'mauer-hang-pflanzen', title: 'Hangmauer mit Bepflanzung' },
+  { img: 'carport-weiss', title: 'Carport mit Abstellraum' },
+  { img: 'carport-holz', title: 'Carport aus Holz' },
+  { img: 'garten-bank-hecke', title: 'Fertiger Garten' },
+  { img: 'beet-randstein-strasse', title: 'Beet an der Grundstücksgrenze' },
+  { img: 'nachher-rasen-neu', title: 'Neuer Rasen mit Sichtschutz' },
+]
+
+/** Referenzen. Jede 5er-Gruppe: erstes Bild groß (2x2), dann 4 klein – Raster ohne Lücken */
+export const PROJECTS: { img: string; title: string; cat: Cat; pos?: string }[] = [
+  { img: 'sitzplatz-trockenmauer', title: 'Runder Sitzplatz mit Trockenmauer', cat: 'garten' },
   { img: 'sandstein-treppe-garten', title: 'Sandsteintreppe in der Böschung', cat: 'naturstein' },
   { img: 'granit-treppe-einfahrt', title: 'Granit-Blockstufen am Eingang', cat: 'treppen' },
-  { img: 'sitzplatz-trockenmauer', title: 'Runder Sitzplatz mit Trockenmauer', cat: 'garten' },
-  { img: 'sandsteinmauer-lang', title: 'Mauer aus Buntsandstein', cat: 'naturstein', wide: true },
+  { img: 'pflasterweg-geschwungen', title: 'Geschwungener Pflasterweg', cat: 'pflaster', pos: '50% 65%' },
   { img: 'polygonalplatten', title: 'Polygonalplatten in Mörtel', cat: 'terrassen' },
+
+  { img: 'pflaster-sandstein-detail', title: 'Hof mit Buntsandstein-Einfassung', cat: 'pflaster' },
   { img: 'terrasse-sichtschutz-lounge', title: 'Terrasse mit Sichtschutz', cat: 'zaun' },
   { img: 'weg-klinker-kiesbeet', title: 'Klinkerweg mit Kiesbeet', cat: 'pflaster' },
-  { img: 'gabionen-zaun', title: 'Gabionenzaun', cat: 'zaun' },
   { img: 'sandstein-hochbeet', title: 'Hochbeet aus Sandsteinblöcken', cat: 'naturstein' },
-  { img: 'pflaster-einfahrt-garage', title: 'Einfahrt und Garagenvorplatz', cat: 'pflaster', wide: true },
-  { img: 'weg-kies-bepflanzung', title: 'Gartenweg mit Bepflanzung', cat: 'garten' },
+  { img: 'gabionen-zaun', title: 'Gabionenzaun', cat: 'zaun' },
+
+  { img: 'sandsteinmauer-lang', title: 'Mauer aus Buntsandstein', cat: 'naturstein' },
   { img: 'terrasse-platten', title: 'Terrasse aus Großformatplatten', cat: 'terrassen' },
   { img: 'thuja-hecke', title: 'Heckenpflanzung', cat: 'garten' },
-  { img: 'pflaster-bunt', title: 'Pflaster im Wildverband', cat: 'pflaster' },
+  { img: 'pflaster-einfahrt-garage', title: 'Einfahrt und Garagenvorplatz', cat: 'pflaster' },
+  { img: 'sandsteinmauer-rasen', title: 'Sandsteinmauer mit neuem Rasen', cat: 'naturstein' },
+
+  { img: 'weg-kies-bepflanzung', title: 'Gartenweg mit Bepflanzung', cat: 'garten' },
   { img: 'weg-treppe-hang', title: 'Weg und Treppe am Hang', cat: 'treppen' },
+  { img: 'pflaster-bunt', title: 'Pflaster im Wildverband', cat: 'pflaster' },
+  { img: 'verblender-naturstein', title: 'Natursteinverblender', cat: 'naturstein' },
   { img: 'rasengitter', title: 'Stellplätze mit Rasengitter', cat: 'pflaster' },
 ]
 

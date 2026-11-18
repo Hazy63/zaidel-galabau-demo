@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Wordmark } from '../Logo'
 import { img } from '../crm/format'
 import ContactForm from './ContactForm'
-import { AREA, CATS, CONTACT, PROJECTS, REVIEWS, SERVICES, type Cat } from './content'
+import { AREA, CATS, CONTACT, HERO, ONSITE, PROJECTS, REVIEWS, SERVICES, type Cat } from './content'
 import { scrollToId, useReveal } from './hooks'
 
 const NAV = [
@@ -75,10 +75,8 @@ export default function Site() {
       )}
 
       {/* Hero */}
-      <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden">
-        <img src={img('pflaster-sandstein-detail')} alt="Gepflasterter Hof mit Einfassung aus Buntsandstein-Blöcken" className="absolute inset-0 -z-10 size-full scale-105 object-cover" fetchPriority="high" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-moss-950 via-moss-950/55 to-moss-950/20" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-moss-950/60 to-transparent" />
+      <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-moss-950">
+        <HeroSlides />
         <div className="mx-auto w-full max-w-7xl px-5 pt-32 pb-14 sm:px-8 sm:pb-20">
           <p className="flex items-center gap-3 text-[13px] font-medium tracking-[0.16em] text-moss-200 uppercase">
             <span className="h-px w-8 bg-moss-300" /> Garten- und Landschaftsbau · Kleinheubach am Main
@@ -108,7 +106,7 @@ export default function Site() {
       </section>
 
       {/* Intro */}
-      <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-7xl px-5 pt-24 pb-16 sm:px-8 sm:pt-32 sm:pb-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <div className="reveal">
             <p className="text-[13px] font-semibold tracking-[0.16em] text-clay-600 uppercase">Herzlich willkommen</p>
@@ -139,6 +137,8 @@ export default function Site() {
         </div>
       </section>
 
+      <OnSite />
+
       {/* Leistungen */}
       <section id="leistungen" className="scroll-mt-16 bg-stone-100 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -153,7 +153,7 @@ export default function Site() {
             {SERVICES.map((s, i) => (
               <article key={s.id} className="reveal group" style={{ transitionDelay: `${(i % 3) * 80}ms` }}>
                 <div className="relative overflow-hidden rounded-2xl">
-                  <img src={img(s.img, true)} alt={s.title} loading="lazy" className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
+                  <img src={img(s.img, true)} alt={s.title} loading="lazy" className="photo aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-[1.04]" />
                   <span className="absolute top-3 left-3 rounded-full bg-moss-950/70 px-2.5 py-1 font-display text-[13px] text-white backdrop-blur">0{i + 1}</span>
                 </div>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight">{s.title}</h3>
@@ -171,7 +171,7 @@ export default function Site() {
       <section className="relative overflow-hidden bg-moss-900 text-white">
         <div className="grid lg:grid-cols-2">
           <div className="relative min-h-[360px] lg:order-2 lg:min-h-[640px]">
-            <img src={img('sandstein-setzen-bagger')} alt="Buntsandstein-Blöcke werden mit dem Bagger gesetzt" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img src={img('sandstein-setzen-bagger')} alt="Buntsandstein-Blöcke werden mit dem Bagger gesetzt" loading="lazy" className="photo absolute inset-0 size-full object-cover" />
           </div>
           <div className="reveal px-5 py-20 sm:px-8 lg:py-28 lg:pr-16 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]">
             <p className="text-[13px] font-semibold tracking-[0.16em] text-clay-200 uppercase">Unser Material</p>
@@ -199,7 +199,7 @@ export default function Site() {
             ['nachher-garten-zaun', 'Nachher', 'Mauer, Zaun mit Sichtschutz, Rasengitter und Bepflanzung.'],
           ].map(([src, label, cap]) => (
             <figure key={src} className="relative overflow-hidden rounded-2xl">
-              <img src={img(src, true)} alt={cap} loading="lazy" className="aspect-[4/3] w-full object-cover" />
+              <img src={img(src, true)} alt={cap} loading="lazy" className="photo aspect-[4/3] w-full object-cover" />
               <span className={clsx('absolute top-4 left-4 rounded-full px-3 py-1 text-[12px] font-semibold tracking-wide uppercase', label === 'Vorher' ? 'bg-white/90 text-stone-800' : 'bg-moss-800 text-white')}>{label}</span>
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-12 text-[15px] text-white">{cap}</figcaption>
             </figure>
@@ -314,25 +314,77 @@ export default function Site() {
   )
 }
 
+const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/** Hero: Diashow mit langsamem Zoom, Bild rechts frei, Text links auf Verlauf */
+function HeroSlides() {
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    if (reducedMotion()) return
+    const t = setInterval(() => setI((n) => (n + 1) % HERO.length), 7000)
+    return () => clearInterval(t)
+  }, [])
+  return (
+    <>
+      {HERO.map((h, n) => (
+        <div key={h.img} className={clsx('absolute inset-0 -z-10 transition-opacity duration-[1500ms]', n === i ? 'opacity-100' : 'opacity-0')} aria-hidden={n !== i}>
+          <img
+            src={img(h.img)}
+            alt={h.title}
+            className={clsx('photo size-full object-cover', n === i && 'kenburns')}
+            style={{ objectPosition: h.pos }}
+            fetchPriority={n === 0 ? 'high' : 'low'}
+            loading={n === 0 ? 'eager' : 'lazy'}
+          />
+        </div>
+      ))}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-moss-950 via-moss-950/70 to-moss-950/30 sm:from-moss-950/95 sm:via-moss-950/35 sm:to-moss-950/10" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-moss-950/75 via-moss-950/25 to-transparent md:block" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-moss-950/50 to-transparent" />
+      <div className="absolute right-8 bottom-20 hidden items-center gap-4 text-[13px] text-white/75 lg:flex">
+        <span>{HERO[i].title}</span>
+        <span className="flex gap-1.5">
+          {HERO.map((h, n) => (
+            <button key={h.img} onClick={() => setI(n)} aria-label={`Bild ${n + 1}`} className={clsx('h-1 rounded-full transition-all', n === i ? 'w-8 bg-white' : 'w-4 bg-white/40 hover:bg-white/70')} />
+          ))}
+        </span>
+      </div>
+    </>
+  )
+}
+
+/** Laufband mit Fotos von der Arbeit – zeigt, dass hier wirklich gebaut wird */
+function OnSite() {
+  const items = [...ONSITE, ...ONSITE]
+  return (
+    <section className="overflow-hidden pb-24 sm:pb-32" aria-label="Auf der Baustelle">
+      <div className="mx-auto mb-8 flex max-w-7xl items-end justify-between gap-6 px-5 sm:px-8">
+        <p className="text-[13px] font-semibold tracking-[0.16em] text-clay-600 uppercase">Auf der Baustelle</p>
+        <p className="hidden text-[14px] text-stone-500 sm:block">Echte Fotos aus unserer Arbeit – keine Bilder aus dem Katalog.</p>
+      </div>
+      <div className="relative motion-reduce:overflow-x-auto">
+        <ul className="marquee flex w-max gap-3 sm:gap-4">
+          {items.map((p, n) => (
+            <li key={n} className="relative h-56 w-72 shrink-0 overflow-hidden rounded-xl sm:h-72 sm:w-96" aria-hidden={n >= ONSITE.length}>
+              <img src={img(p.img, true)} alt={p.title} loading="lazy" className="photo size-full object-cover" />
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 pt-10 text-[13.5px] font-medium text-white">{p.title}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-stone-50 sm:w-24" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-stone-50 sm:w-24" />
+      </div>
+    </section>
+  )
+}
+
+const catLabel = (c: Cat) => CATS.find((x) => x.id === c)?.label ?? ''
+
 function Gallery() {
   const [cat, setCat] = useState<Cat | 'alle'>('alle')
   const [open, setOpen] = useState<number | null>(null)
   const list = PROJECTS.filter((p) => cat === 'alle' || p.cat === cat)
-
-  useEffect(() => {
-    if (open === null) return
-    const k = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(null)
-      if (e.key === 'ArrowRight') setOpen((i) => (i! + 1) % list.length)
-      if (e.key === 'ArrowLeft') setOpen((i) => (i! - 1 + list.length) % list.length)
-    }
-    window.addEventListener('keydown', k)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', k)
-      document.body.style.overflow = ''
-    }
-  }, [open, list.length])
+  const bento = cat === 'alle'
 
   return (
     <section id="referenzen" className="scroll-mt-16 mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
@@ -349,32 +401,96 @@ function Gallery() {
           ))}
         </div>
       </div>
-      <div className="mt-12 grid grid-flow-dense auto-rows-[220px] grid-cols-2 gap-3 sm:auto-rows-[260px] lg:grid-cols-4">
-        {list.map((p, i) => (
-          <button
-            key={p.img}
-            onClick={() => setOpen(i)}
-            className={clsx('group relative overflow-hidden rounded-xl bg-stone-200 text-left', p.wide && cat === 'alle' && 'col-span-2', p.tall && cat === 'alle' && 'row-span-2')}
-          >
-            <img src={img(p.img, true)} alt={p.title} loading="lazy" className="size-full object-cover transition duration-700 group-hover:scale-[1.05]" />
-            <span className="absolute inset-x-0 bottom-0 translate-y-1 bg-gradient-to-t from-black/70 to-transparent p-4 pt-10 text-[14px] font-medium text-white opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">{p.title}</span>
-          </button>
-        ))}
+      <div key={cat} className={clsx('fadein mt-12 grid gap-3', bento ? 'grid-flow-dense auto-rows-[170px] grid-cols-2 sm:auto-rows-[240px] lg:auto-rows-[260px] lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3')}>
+        {list.map((p, i) => {
+          const big = bento && i % 5 === 0
+          return (
+            <button
+              key={p.img}
+              onClick={() => setOpen(i)}
+              className={clsx(
+                'group relative overflow-hidden rounded-xl bg-stone-200 text-left',
+                !bento && 'aspect-[4/3]',
+                big && 'col-span-2 row-span-2',
+                big && (i / 5) % 2 === 1 && 'lg:col-start-3',
+              )}
+            >
+              <img src={img(p.img, !big)} alt={p.title} loading="lazy" className="photo size-full object-cover transition duration-700 group-hover:scale-[1.04]" style={p.pos ? { objectPosition: p.pos } : undefined} />
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-3 pt-12 sm:p-4 sm:pt-14">
+                <span className={clsx('block font-medium text-white', big ? 'text-[15px] sm:text-[17px]' : 'text-[13px] sm:text-[14.5px]')}>{p.title}</span>
+                <span className="mt-0.5 hidden text-[12px] tracking-wide text-white/65 uppercase sm:block">{catLabel(p.cat)}</span>
+              </span>
+            </button>
+          )
+        })}
       </div>
 
-      {open !== null && list[open] && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-stone-950/95" onClick={() => setOpen(null)}>
-          <div className="flex justify-end p-4">
-            <button className="grid size-11 place-items-center rounded-full text-white hover:bg-white/10" aria-label="Schließen"><X size={24} /></button>
-          </div>
-          <div className="relative flex min-h-0 flex-1 items-center justify-center px-4" onClick={(e) => e.stopPropagation()}>
-            <img src={img(list[open].img)} alt={list[open].title} className="max-h-full max-w-full rounded-lg object-contain" />
-            <button onClick={() => setOpen((open - 1 + list.length) % list.length)} className="absolute left-4 grid size-12 place-items-center rounded-full bg-black/40 text-white hover:bg-black/60" aria-label="Zurück"><ChevronLeft size={24} /></button>
-            <button onClick={() => setOpen((open + 1) % list.length)} className="absolute right-4 grid size-12 place-items-center rounded-full bg-black/40 text-white hover:bg-black/60" aria-label="Weiter"><ChevronRight size={24} /></button>
-          </div>
-          <p className="p-6 text-center text-white/80">{list[open].title} <span className="text-white/40">· {open + 1} / {list.length}</span></p>
-        </div>
-      )}
+      {open !== null && list[open] && <Lightbox list={list} index={open} onChange={setOpen} onClose={() => setOpen(null)} />}
     </section>
+  )
+}
+
+function Lightbox({ list, index, onChange, onClose }: { list: typeof PROJECTS; index: number; onChange: (i: number) => void; onClose: () => void }) {
+  const n = list.length
+  const prev = () => onChange((index - 1 + n) % n)
+  const next = () => onChange((index + 1) % n)
+  const [touchX, setTouchX] = useState<number | null>(null)
+
+  useEffect(() => {
+    const k = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowRight') onChange((index + 1) % n)
+      if (e.key === 'ArrowLeft') onChange((index - 1 + n) % n)
+    }
+    window.addEventListener('keydown', k)
+    return () => window.removeEventListener('keydown', k)
+  }, [index, n, onChange, onClose])
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [])
+
+  // Nachbarbilder vorladen, damit Blättern ohne Wartezeit geht
+  useEffect(() => {
+    for (const d of [1, -1]) new Image().src = img(list[(index + d + n) % n].img)
+  }, [index, n, list])
+
+  const p = list[index]
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-stone-950/96 backdrop-blur-sm" onClick={onClose} role="dialog" aria-modal="true" aria-label={p.title}>
+      <div className="flex items-center justify-between p-4 text-white/70">
+        <span className="pl-2 text-[14px]">{index + 1} / {n}</span>
+        <button className="grid size-11 place-items-center rounded-full text-white hover:bg-white/10" aria-label="Schließen"><X size={24} /></button>
+      </div>
+      <div
+        className="relative flex min-h-0 flex-1 items-center justify-center px-2 sm:px-20"
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={(e) => setTouchX(e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          if (touchX === null) return
+          const dx = e.changedTouches[0].clientX - touchX
+          if (Math.abs(dx) > 50) (dx < 0 ? next : prev)()
+          setTouchX(null)
+        }}
+      >
+        <img key={p.img} src={img(p.img)} alt={p.title} className="photo fadein max-h-full max-w-full rounded-lg object-contain shadow-2xl" />
+        <button onClick={prev} className="absolute left-3 hidden size-12 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:grid" aria-label="Zurück"><ChevronLeft size={24} /></button>
+        <button onClick={next} className="absolute right-3 hidden size-12 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:grid" aria-label="Weiter"><ChevronRight size={24} /></button>
+      </div>
+      <div className="p-5 text-center" onClick={(e) => e.stopPropagation()}>
+        <p className="text-white">{p.title} <span className="text-white/45">· {catLabel(p.cat)}</span></p>
+        <p className="mt-1 text-[12.5px] text-white/40 sm:hidden">Wischen zum Blättern</p>
+        <div className="mx-auto mt-4 hidden w-fit max-w-full gap-2 overflow-x-auto pb-1 sm:flex">
+          {list.map((t, i) => (
+            <button key={t.img} onClick={() => onChange(i)} className={clsx('h-12 w-16 shrink-0 overflow-hidden rounded-md transition', i === index ? 'ring-2 ring-white' : 'opacity-50 hover:opacity-90')} aria-label={t.title}>
+              <img src={img(t.img, true)} alt="" loading="lazy" className="size-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }

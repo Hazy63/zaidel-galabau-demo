@@ -3,8 +3,10 @@ import sys
 from PIL import Image
 src, dst = sys.argv[1], sys.argv[2]
 jobs = {
-    'site-hero': ('desk-site', (0, 0, 1440, 860)),
-    'site-referenzen': ('desk-site', (0, 3560, 1440, 4420)),
+    'site-hero': ('site/desk-00', (0, 0, 1440, 860)),
+    'site-referenzen': ('site/desk-referenzen', (0, 60, 1280, 1460)),
+    'site-baustelle': ('site/desk-01', (0, 530, 1440, 900)),
+    'mob-site-hero': ('site/mob-00', None),
     'dash': ('desk-dash', (0, 0, 1440, 900)),
     'jobs': ('desk-jobs', None),
     'job': ('desk-job', (0, 0, 1440, 900)),

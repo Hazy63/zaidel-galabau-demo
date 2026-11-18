@@ -128,14 +128,16 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
 <section class="page">
   <div class="eyebrow">Teil 1</div>
   <h2>Die Website</h2>
-  <p class="lead">Ihre eigenen Baustellenfotos stehen im Mittelpunkt. Auf dem Handy gibt es unten einen festen „Jetzt anrufen“-Knopf.</p>
+  <p class="lead">Ihre eigenen Baustellenfotos stehen im Mittelpunkt, gleich ab dem ersten Bild. Auf dem Handy gibt es unten einen festen „Jetzt anrufen“-Knopf.</p>
   <div class="shot" style="margin-top:5mm"><img src="${img('site-hero')}"></div>
   <div class="grid2" style="margin-top:7mm;gap:8mm">
     <div>
       <h3>Was drauf ist</h3>
       <ul class="list">
         <li>Leistungen: Pflaster, Mauern und Naturstein, Treppen, Terrassen, Zäune, Gartengestaltung</li>
-        <li>Referenzen mit Filter, Fotos groß ansehen</li>
+        <li>Startbild wechselt zwischen vier Ihrer schönsten Baustellen</li>
+        <li>20 Referenzen mit Filter, Fotos groß ansehen und durchblättern</li>
+        <li>Laufband „Auf der Baustelle“: Ihre Kolonne bei der Arbeit</li>
         <li>Vorher und Nachher an einem echten Garten</li>
         <li>Ablauf vom Anruf bis zur Übergabe</li>
         <li>Ihre Google-Bewertungen (5,0)</li>
@@ -157,6 +159,22 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
 </section>
 
 <section class="page">
+  <div class="eyebrow">Teil 1 · Website</div>
+  <h2>Ihre Fotos im Mittelpunkt</h2>
+  <p class="lead">Alle Bilder stammen von Ihrer bisherigen Website, in voller Auflösung. Auf der alten Seite waren die Galerien kaputt, hier sind sie wieder zu sehen.</p>
+  <div style="display:grid;grid-template-columns:1fr 50mm;gap:7mm;margin-top:5mm;align-items:start">
+    <div>
+      <div class="shot"><img src="${img('site-referenzen')}"></div>
+      <h3 style="margin-top:3.5mm">Referenzen</h3><p class="muted">Ein großes Bild, vier kleine, ohne Lücken. Filter nach Pflaster, Naturstein, Treppen, Terrassen, Zäunen und Garten. Ein Klick öffnet das Foto groß, mit Pfeilen oder Wischen blättern.</p>
+      <div class="shot" style="margin-top:4mm"><img src="${img('site-baustelle')}"></div>
+      <h3 style="margin-top:3.5mm">Auf der Baustelle</h3><p class="muted">Laufband mit Fotos von der Arbeit selbst. Zeigt, dass hier selbst gebaut wird. Neue Baustellenfotos lassen sich jederzeit dazunehmen.</p>
+    </div>
+    <figure style="margin:0"><div class="phone"><img src="${img('mob-site-hero')}"></div><figcaption style="margin-top:2.5mm;font-size:9pt"><b>Am Handy:</b> Startbild wechselt alle paar Sekunden. Anrufen und Anfrage sind mit dem Daumen erreichbar.</figcaption></figure>
+  </div>
+  ${footer(4)}
+</section>
+
+<section class="page">
   <div class="eyebrow">Teil 2 · Büro</div>
   <h2>Von der Anfrage zur Rechnung</h2>
   <p class="lead">So läuft ein Auftrag im Auftragsbuch. Anmelden als „Büro Zaidel“ oder „Dimitri Zaidel“ mit PIN <span class="pin">1234</span>.</p>
@@ -168,7 +186,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
     <li><div><b>Angebot angenommen.</b> Status auf „Angenommen“ stellen, der Auftrag springt auf „Beauftragt“. Team und Einsatztage festlegen.</div></li>
     <li><div><b>Rechnung.</b> Im Angebot „In Rechnung umwandeln“: alle Positionen werden übernommen, Nummer und Fälligkeit automatisch. Bezahlt? Status auf „Bezahlt“.</div></li>
   </ol>
-  ${footer(4)}
+  ${footer(5)}
 </section>
 
 <section class="page">
@@ -182,7 +200,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
     <div><div class="shot"><img src="${img('job')}"></div><h3 style="margin-top:3.5mm">Ein Auftrag</h3><p class="muted">Oben Route, Anrufen und E-Mail. Darunter Beschreibung, Aufgaben zum Abhaken, Team, Einsatztage und Karte. Wichtige Hinweise (z. B. Leitungen im Boden) stehen gelb ganz oben.</p></div>
     <div><div class="shot"><img src="${img('doc')}"></div><h3 style="margin-top:3.5mm">Angebot als PDF</h3><p class="muted">Mit Ihrem Briefkopf, Positionen und Mehrwertsteuer.</p></div>
   </div>
-  ${footer(5)}
+  ${footer(6)}
 </section>
 
 <section class="page">
@@ -199,7 +217,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
     <div class="card"><h3>Was Mitarbeiter tun</h3><ul class="list" style="margin-top:2mm"><li>Fotos vorher, während, nachher hochladen</li><li>Notizen schreiben, Fragen ans Büro</li><li>Aufgaben abhaken</li><li>Lieferscheine fotografieren oder hochladen</li></ul></div>
     <div class="card"><h3>Als App aufs Handy</h3><p class="muted" style="margin-bottom:2mm">Einmal einrichten, dann startet es wie eine App:</p><ul class="list"><li><span><b>iPhone:</b> in Safari öffnen, Teilen-Symbol, „Zum Home-Bildschirm“</span></li><li><span><b>Android:</b> in Chrome öffnen, Menü ⋮, „Zum Startbildschirm hinzufügen“</span></li></ul></div>
   </div>
-  ${footer(6)}
+  ${footer(7)}
 </section>
 
 <section class="page">
@@ -223,7 +241,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
     <ul class="list"><li>Fortlaufende Nummern für Aufträge, Angebote, Rechnungen</li><li>Leistungskatalog mit Richtpreisen, frei anpassbar</li><li>Überfällige Rechnungen werden rot markiert</li></ul>
     <ul class="list"><li>Verlauf: wer hat wann was geändert</li><li>Kundenkartei mit allen Aufträgen und Umsatz</li><li>Dateien wie Pläne oder Lieferscheine je Auftrag</li></ul>
   </div>
-  ${footer(7)}
+  ${footer(8)}
 </section>
 
 <section class="page">
@@ -275,7 +293,7 @@ a{color:#2b4d39;text-decoration:none;font-weight:600}
     <div><div style="font:500 14pt Fraunces,serif">Fragen oder Wünsche?</div><div style="color:#c9dcc0;font-size:9.5pt">Einfach bei Dennis melden. Am besten nach dem ersten Ausprobieren.</div></div>
     <div style="width:20mm;height:20mm;background:#faf8f4;border-radius:2mm;padding:2mm">${qrSite}</div>
   </div>
-  ${footer(8)}
+  ${footer(9)}
 </section>
 
 </body></html>`
@@ -287,7 +305,7 @@ const p = await b.newPage()
 await p.goto(pathToFileURL(htmlPath).href, { waitUntil: 'networkidle0' })
 await p.evaluateHandle('document.fonts.ready')
 await p.pdf({ path: out, format: 'A4', printBackground: true, preferCSSPageSize: true })
-await p.setViewport({ width: 794, height: 1123 * 8 })
+await p.setViewport({ width: 794, height: 1123 * 9 })
 await p.screenshot({ path: resolve(here, 'preview.png'), fullPage: true })
 await b.close()
 console.log('PDF:', out)
