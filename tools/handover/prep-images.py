@@ -25,6 +25,6 @@ for out, (name, box) in jobs.items():
     print(out, im.size)
 
 # Deckblatt-Foto (JPEG hält das PDF klein)
-cover = Image.open('public/img/pflaster-sandstein-detail.webp').convert('RGB')
+cover = Image.open('public/img/garten-bank-hecke.webp').convert('RGB')
 cover.thumbnail((1500, 1500))
 cover.save(f'{dst}/cover.jpg', quality=78, optimize=True)
